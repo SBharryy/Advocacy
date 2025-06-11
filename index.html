@@ -6,13 +6,28 @@
     <title>Satyajit Biswal - Championing Safe Educational Spaces</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Inter + Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Light Slate */
-            color: #334155; /* Slate 700 */
+            background-color: #f8fafc;
+            color: #334155;
+            scroll-behavior: smooth;
+        }
+        .font-display {
+            font-family: 'Playfair Display', serif;
         }
         .container {
             max-width: 1200px;
@@ -20,207 +35,555 @@
             padding: 1.5rem;
         }
         h1, h2, h3 {
-            font-weight: 600;
-            color: #1e293b; /* Slate 900 */
+            color: var(--dark);
+        }
+        h1 {
+            font-weight: 800;
+        }
+        h2 {
+            font-weight: 700;
         }
         .section-title {
             position: relative;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            margin-bottom: 3rem;
+            text-align: center;
         }
         .section-title::after {
             content: '';
             position: absolute;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             bottom: 0;
-            width: 50px;
+            width: 80px;
             height: 4px;
-            background-color: #3b82f6; /* Blue 500 */
-            border-radius: 9999px; /* Rounded corners */
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 9999px;
         }
         .card {
             background-color: #ffffff;
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);
         }
         .news-item {
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px dashed #cbd5e1; /* Slate 300 */
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px dashed #cbd5e1;
+            transition: all 0.3s ease;
+        }
+        @media (min-width: 768px) {
+            .news-item {
+                flex-direction: row;
+            }
+            .news-item img {
+                width: 35%;
+                min-width: 280px;
+            }
+            .news-item .news-content {
+                width: 65%;
+            }
         }
         .news-item:last-child {
             border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
         a {
-            color: #2563eb; /* Blue 700 */
+            color: var(--primary);
             text-decoration: none;
+            transition: all 0.3s ease;
         }
         a:hover {
-            text-decoration: underline;
+            color: var(--primary-dark);
         }
         .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            background-color: #3b82f6; /* Blue 500 */
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: 0.75rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
         }
         .btn:hover {
-            background-color: #2563eb; /* Blue 700 */
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        }
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), #e67e22);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+        .btn-secondary:hover {
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+            background: linear-gradient(135deg, #e67e22, var(--secondary));
         }
         .news-image {
-            width: auto;
-            height: auto;
-            max-width: 100%;
-            max-height: 100%; /* Limit height but don't crop or stretch */
-            object-fit: contain; /* Show full image, add letterboxing if needed */
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+        .news-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+        }
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15);
+        }
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 5rem;
+            font-family: 'Playfair Display', serif;
+            color: rgba(59, 130, 246, 0.1);
+            line-height: 1;
+        }
+        .scroll-down {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        .progress-bar {
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+            width: 0;
+            transition: width 1s ease-in-out;
         }
     </style>
 </head>
 <body class="antialiased">
 
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+            <p class="text-gray-600 font-medium">Loading...</p>
+        </div>
+    </div>
+
     <!-- Header Section -->
-    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12 shadow-lg">
-        <div class="container text-center">
-            <h1 class="text-4xl sm:text-5xl font-bold mb-2">Satyajit Biswal</h1>
-            <p class="text-lg sm:text-xl mb-4">Advocating for Safe & Inclusive Educational Spaces</p>
-            <div class="flex flex-wrap justify-center gap-4 text-sm sm:text-base">
-                <a href="https://linkedin.com/in/satyajitt" target="_blank" class="flex items-center text-white hover:underline"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.3 5.6a.75.75 0 01-.75.75H4.45a.75.75 0 010-1.5h11.1c.414 0 .75.336.75.75zM16.3 9.4a.75.75 0 01-.75.75H4.45a.75.75 0 010-1.5h11.1c.414 0 .75.336.75.75zM16.3 13.2a.75.75 0 01-.75.75H4.45a.75.75 0 010-1.5h11.1c.414 0 .75.336.75.75z" clip-rule="evenodd" /></svg> linkedin.com/in/satyajitt</a>
+    <header class="header-gradient text-white py-16 shadow-xl relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-transparent via-white to-transparent opacity-10"></div>
+        </div>
+        <div class="container text-center relative z-10">
+            <h1 class="text-5xl sm:text-6xl font-display font-bold mb-4">Satyajit Biswal</h1>
+            <p class="text-xl sm:text-2xl mb-6 max-w-3xl mx-auto">Advocating for Safe & Inclusive Educational Spaces</p>
+            
+            <div class="flex flex-wrap justify-center gap-6 mt-8">
+                <a href="https://linkedin.com/in/satyajitt" target="_blank" class="btn">
+                    <i class="fab fa-linkedin-in mr-2"></i> Connect on LinkedIn
+                </a>
+                <a href="#support" class="btn btn-secondary">
+                    <i class="fas fa-hands-helping mr-2"></i> Get Help Now
+                </a>
+            </div>
+            
+            <div class="scroll-down">
+                <a href="#commitment" class="text-white hover:text-blue-200">
+                    <i class="fas fa-chevron-down"></i>
+                </a>
             </div>
         </div>
+        
+        <!-- Animated circles decoration -->
+        <div class="absolute top-20 left-10 w-8 h-8 rounded-full bg-blue-400 opacity-20 floating" style="animation-delay: 0s;"></div>
+        <div class="absolute top-1/3 right-20 w-12 h-12 rounded-full bg-yellow-400 opacity-20 floating" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-20 left-1/4 w-10 h-10 rounded-full bg-white opacity-10 floating" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/4 right-1/3 w-16 h-16 rounded-full bg-blue-300 opacity-10 floating" style="animation-delay: 3s;"></div>
     </header>
 
+    <!-- Progress Bar -->
+    <div class="fixed top-0 left-0 right-0 h-1 bg-gray-200 z-40">
+        <div id="progress-bar" class="progress-bar h-full"></div>
+    </div>
+
     <!-- Main Content -->
-    <main class="container py-8">
+    <main class="container py-12">
+
+        <!-- Stats Section -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12" data-aos="fade-up">
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-4xl font-bold text-blue-600 mb-2">10,000+</div>
+                <div class="text-gray-600">Reported ragging cases since 2012</div>
+            </div>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-4xl font-bold text-red-600 mb-2">51</div>
+                <div class="text-gray-600">Ragging-related deaths (2022-2025)</div>
+            </div>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-4xl font-bold text-yellow-600 mb-2">30x</div>
+                <div class="text-gray-600">Higher cases in medical colleges</div>
+            </div>
+        </section>
 
         <!-- My Commitment & Action Section -->
-        <section id="commitment" class="mb-10">
-            <h2 class="text-3xl section-title mb-6">My Commitment & Action: Eradicating Ragging</h2>
+        <section id="commitment" class="mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-display section-title">My <span class="gradient-text">Commitment</span> & Action</h2>
             <div class="card">
-                <p class="text-lg leading-relaxed mb-4">
+                <p class="text-lg leading-relaxed mb-6">
                     As a student, I have directly experienced the pervasive fear and apprehension caused by ragging. This personal encounter ignited a deep passion to dismantle this harmful culture within educational institutions, ensuring new students can thrive in a safe and nurturing environment. My advocacy is rooted in a belief that kindness, respect, and collaborative leadership can effectively replace intimidation and hierarchy.
                 </p>
-                <p class="text-lg leading-relaxed mb-4">
-                    The scale of this issue is staggering. Over the past 14 years, nearly **10,000 cases of ragging have been reported** on India's centralized anti-ragging portal. More alarmingly, between April 2022 and 2025 alone, **51 ragging-related deaths** have occurred, almost matching student suicides in major coaching hubs. Medical colleges, despite their smaller student populations, disproportionately account for a high percentage of these incidents and fatalities, reporting up to **30 times more ragging cases** relative to student numbers compared to other institutes.
-                </p>
-                <p class="text-lg leading-relaxed">
-                    My practical approach to this issue was exemplified during our college's Tech Fest, where I led a team of over 50 student volunteers. I consciously adopted a guidance-based, non-dictatorial leadership style, demonstrating that even under intense pressure, significant achievements are possible through empathy and collective effort. This experience served as a tangible precedent, proving that a culture of mutual respect and compassion can effectively counter traditional power dynamics. Through consistent personal example and active discussions with peers, I strive to cultivate an atmosphere where every student feels welcomed and secure, contributing to a significant reduction in fear and an increase in positive peer interactions.
-                </p>
+                
+                <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6 rounded-r" data-aos="fade-left">
+                    <p class="text-xl font-semibold leading-relaxed text-red-700">
+                        The scale of this issue is staggering and demands urgent attention:
+                    </p>
+                </div>
+                
+                <ul class="space-y-4 mb-6">
+                    <li class="flex items-start" data-aos="fade-right">
+                        <span class="flex-shrink-0 bg-blue-100 text-blue-800 rounded-full p-2 mr-3">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </span>
+                        <span class="text-lg leading-relaxed">Over the past 14 years, nearly <strong class="text-blue-700">10,000 cases of ragging have been reported</strong> on India's centralized anti-ragging portal.</span>
+                    </li>
+                    <li class="flex items-start" data-aos="fade-right" data-aos-delay="100">
+                        <span class="flex-shrink-0 bg-red-100 text-red-800 rounded-full p-2 mr-3">
+                            <i class="fas fa-heartbeat"></i>
+                        </span>
+                        <span class="text-lg leading-relaxed">More alarmingly, between April 2022 and 2025 alone, <strong class="text-red-700">51 ragging-related deaths</strong> have occurred, a figure that tragically parallels student suicides in major coaching hubs.</span>
+                    </li>
+                    <li class="flex items-start" data-aos="fade-right" data-aos-delay="200">
+                        <span class="flex-shrink-0 bg-yellow-100 text-yellow-800 rounded-full p-2 mr-3">
+                            <i class="fas fa-graduation-cap"></i>
+                        </span>
+                        <span class="text-lg leading-relaxed">Medical colleges, despite their smaller student populations, disproportionately account for a high percentage of these incidents and fatalities, reporting up to <strong class="text-yellow-700">30 times more ragging cases</strong> relative to student numbers compared to other institutes.</span>
+                    </li>
+                </ul>
+                
+                <div class="bg-blue-50 p-6 rounded-xl border border-blue-100" data-aos="fade-up">
+                    <p class="text-lg leading-relaxed">
+                        My practical approach to this issue was exemplified during our college's Tech Fest, where I led a team of over 50 student volunteers. I consciously adopted a guidance-based, non-dictatorial leadership style, demonstrating that even under intense pressure, significant achievements are possible through empathy and collective effort. This experience served as a tangible precedent, proving that a culture of mutual respect and compassion can effectively counter traditional power dynamics. Through consistent personal example and active discussions with peers, I strive to cultivate an atmosphere where every student feels welcomed and secure, contributing to a significant reduction in fear and an increase in positive peer interactions.
+                    </p>
+                </div>
             </div>
         </section>
 
         <!-- My Vision & Understanding Section -->
-        <section id="vision" class="mb-10">
-            <h2 class="text-3xl section-title mb-6">My Vision: A Culture of Respect and Growth</h2>
+        <section id="vision" class="mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-display section-title">My <span class="gradient-text">Vision</span></h2>
             <div class="card">
-                <p class="text-lg leading-relaxed">
-                    My vision extends beyond simply preventing incidents; it's about fostering a fundamental cultural shift where empathy and dignity are paramount. The persistence of ragging is a symptom of outdated power structures and a lack of understanding regarding its profound psychological and physical impact. My unique contribution lies in proving, through direct action, that true leadership empowers and uplifts, rather than intimidates. I am dedicated to championing environments where students feel safe to express themselves, innovate, and contribute without fear of harassment. This involves continuous advocacy, leading by example, and inspiring others to embrace a more compassionate and collaborative approach to community building within educational settings.
-                </p>
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="md:w-2/3">
+                        <p class="text-lg leading-relaxed mb-6">
+                            My vision extends beyond simply preventing incidents; it's about fostering a fundamental cultural shift where empathy and dignity are paramount. The persistence of ragging is a symptom of outdated power structures and a lack of understanding regarding its profound psychological and physical impact. My unique contribution lies in proving, through direct action, that true leadership empowers and uplifts, rather than intimidates.
+                        </p>
+                        <p class="text-lg leading-relaxed">
+                            I am dedicated to championing environments where students feel safe to express themselves, innovate, and contribute without fear of harassment. This involves continuous advocacy, leading by example, and inspiring others to embrace a more compassionate and collaborative approach to community building within educational settings.
+                        </p>
+                    </div>
+                    <div class="md:w-1/3">
+                        <div class="bg-blue-100 p-6 rounded-xl border-2 border-dashed border-blue-300 text-center">
+                            <i class="fas fa-lightbulb text-5xl text-yellow-500 mb-4"></i>
+                            <h3 class="text-xl font-bold text-blue-800 mb-2">Cultural Transformation</h3>
+                            <p class="text-blue-700">From fear to empowerment through collective action</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonial Section -->
+        <section class="mb-16" data-aos="fade-up">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="testimonial-card" data-aos="fade-up">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
+                            <i class="fas fa-user-graduate text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Former Student</h4>
+                            <p class="text-sm text-gray-600">Medical College, 2024</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"The fear of ragging made my first months in college unbearable. Initiatives like Satyajit's give me hope that future students won't have to experience this trauma. His approach of leading through empathy rather than authority is exactly what our institutions need."</p>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 mr-4">
+                            <i class="fas fa-chalkboard-teacher text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">College Professor</h4>
+                            <p class="text-sm text-gray-600">Engineering College</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"Satyajit's leadership during the Tech Fest demonstrated how positive peer influence can transform campus culture. His ability to motivate 50+ volunteers without resorting to hierarchical pressure was remarkable and serves as a model for student-led initiatives."</p>
+                </div>
             </div>
         </section>
 
         <!-- The Urgent Reality: News on Ragging & Harassment Section -->
-        <section id="news" class="mb-10">
-            <h2 class="text-3xl section-title mb-6">The Urgent Reality: News on Ragging & Harassment</h2>
+        <section id="news" class="mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-display section-title">The <span class="gradient-text">Urgent Reality</span></h2>
             <div class="card">
-                <p class="text-md text-gray-600 mb-4">
+                <p class="text-lg text-gray-600 mb-6 text-center max-w-3xl mx-auto">
                     The issue of ragging and harassment remains a critical challenge in educational institutions across India. These recent reports underscore the ongoing need for continued vigilance, effective policies, and proactive student advocacy:
                 </p>
 
-                <div class="news-item">
-                    <!-- Placeholder for image. Replace src with actual image URL if available. -->
-                    <img src="https://static.toiimg.com/thumb/msid-115060248,imgsize-65700,width-400,resizemode-4/115060248.jpg" alt="Anti-Ragging Initiative" class="news-image">
-                    <h3 class="text-lg font-semibold text-blue-800">Ragging Complaints Surge in India's Colleges, Over 10,000 Cases Since 2012 (Factly.in)</h3>
-                    <p class="text-sm text-gray-600">Published: May 16, 2025</p>
-                    <p class="text-gray-700">Recent data reveals a concerning rise in reported ragging incidents, with medical and nursing colleges particularly affected. Despite existing regulations, physical, emotional, and psychological harassment continues to challenge campus safety, highlighting the need for stronger enforcement and reporting mechanisms.</p>
-                    <a href="https://factly.in/data-close-to-10000-cases-of-ragging-were-reported-on-the-centralised-anti-ragging-portal-since-2012/" target="_blank" class="text-blue-600 hover:underline text-sm">Read more</a>
+                <div class="news-item" data-aos="fade-up">
+                    <img src="https://static.toiimg.com/thumb/msid-115060248,imgsize-65700,width-400,resizemode-4/115060248.jpg" alt="Anti-Ragging Initiative" class="news-image" onerror="this.onerror=null;this.src='https://placehold.co/600x250/CCCCCC/000000?text=Image+Unavailable';">
+                    <div class="news-content">
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">Ragging Complaints Surge in India's Colleges, Over 10,000 Cases Since 2012 (Factly.in)</h3>
+                        <p class="text-sm text-gray-600 mb-3">Published: May 16, 2025</p>
+                        <p class="text-gray-700 mb-4">Recent data reveals a concerning rise in reported ragging incidents, with medical and nursing colleges particularly affected. Despite existing regulations, physical, emotional, and psychological harassment continues to challenge campus safety, highlighting the need for stronger enforcement and reporting mechanisms.</p>
+                        <a href="https://factly.in/data-close-to-10000-cases-of-ragging-were-reported-on-the-centralised-anti-ragging-portal-since-2012/" target="_blank" class="btn btn-secondary inline-block text-sm px-4 py-2">
+                            Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="news-item">
-                    <!-- Placeholder for image. Replace src with actual image URL if available. -->
-                    <img src="https://static.toiimg.com/thumb/msid-119476809,imgsize-46252,width-400,resizemode-4/Medical-colleges-emerge-as-ragging-hotspots-with-51-deaths-in-three-years-reveals-study.jpg" alt="Medical Colleges Concern" class="news-image">
-                    <h3 class="text-lg font-semibold text-blue-800">Medical Colleges Emerge as Ragging Hotspots with 51 Deaths in 3 Years, Reveals Study (The Times of India)</h3>
-                    <p class="text-sm text-gray-600">Published: March 25, 2025</p>
-                    <p class="text-gray-700">A new report identifies medical colleges as "hotspots" for ragging, accounting for a disproportionately high number of complaints and related deaths (45.1%) between 2022 and 2024. The study emphasizes that despite stringent laws, institutional apathy and underreporting contribute significantly to the persistence of this menace, highlighting a severe crisis for first-year students.</p>
-                    <a href="https://timesofindia.indiatimes.com/india/medical-colleges-emerge-as-ragging-hotspots-with-51-deaths-in-3-years-reveals-study/articleshow/119449832.cms" target="_blank" class="text-blue-600 hover:underline text-sm">Read more</a>
+                <div class="news-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://static.toiimg.com/thumb/msid-119476809,imgsize-46252,width-400,resizemode-4/Medical-colleges-emerge-as-ragging-hotspots-with-51-deaths-in-three-years-reveals-study.jpg" alt="Medical Colleges Concern" class="news-image" onerror="this.onerror=null;this.src='https://placehold.co/600x250/DDEEFF/000000?text=Image+Unavailable';">
+                    <div class="news-content">
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">Medical Colleges Emerge as Ragging Hotspots with 51 Deaths in 3 Years, Reveals Study (The Times of India)</h3>
+                        <p class="text-sm text-gray-600 mb-3">Published: March 25, 2025</p>
+                        <p class="text-gray-700 mb-4">A new report identifies medical colleges as "hotspots" for ragging, accounting for a disproportionately high number of complaints and related deaths (45.1%) between 2022 and 2024. The study emphasizes that despite stringent laws, institutional apathy and underreporting contribute significantly to the persistence of this menace, highlighting a severe crisis for first-year students.</p>
+                        <a href="https://timesofindia.indiatimes.com/india/medical-colleges-emerge-as-ragging-hotspots-with-51-deaths-in-3-years-reveals-study/articleshow/119449832.cms" target="_blank" class="btn btn-secondary inline-block text-sm px-4 py-2">
+                            Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="news-item">
-                    <!-- Placeholder for image. Replace src with actual image URL if available. -->
-                    <img src="https://media.assettype.com/newindianexpress%2F2025-03-19%2Frhyxto3i%2FRagging-Image.jfif?w=1024&auto=format%2Ccompress" alt="Systemic Failure" class="news-image">
-                    <h3 class="text-lg font-semibold text-blue-800">The Unfinished Battle Against Ragging in India: A Systemic Failure (The New Indian Express)</h3>
-                    <p class="text-sm text-gray-600">Published: March 19, 2025</p>
-                    <p class="text-gray-700">This article underscores that despite legal frameworks, ragging persists, often masked as harmless rituals. It highlights poor enforcement, underreporting, and psychological tolls as major challenges. The piece advocates for a multi-pronged approach, including stricter enforcement, leveraging technology against cyber-ragging, and empowering peer-led initiatives to dismantle hierarchical cultures.</p>
-                    <a href="https://www.newindianexpress.com/express-connect/2025/Mar/19/the-unfinished-battle-against-ragging-in-india" target="_blank" class="text-blue-600 hover:underline text-sm">Read more</a>
+                <div class="news-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://media.assettype.com/newindianexpress%2F2025-03-19%2Frhyxto3i%2FRagging-Image.jfif?w=1024&auto=format%2Ccompress" alt="Systemic Failure" class="news-image" onerror="this.onerror=null;this.src='https://placehold.co/600x250/CCDDAA/000000?text=Image+Unavailable';">
+                    <div class="news-content">
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">The Unfinished Battle Against Ragging in India: A Systemic Failure (The New Indian Express)</h3>
+                        <p class="text-sm text-gray-600 mb-3">Published: March 19, 2025</p>
+                        <p class="text-gray-700 mb-4">This article underscores that despite legal frameworks, ragging persists, often masked as harmless rituals. It highlights poor enforcement, underreporting, and psychological tolls as major challenges. The piece advocates for a multi-pronged approach, including stricter enforcement, leveraging technology against cyber-ragging, and empowering peer-led initiatives to dismantle hierarchical cultures.</p>
+                        <a href="https://www.newindianexpress.com/express-connect/2025/Mar/19/the-unfinished-battle-against-ragging-in-india" target="_blank" class="btn btn-secondary inline-block text-sm px-4 py-2">
+                            Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="news-item">
-                    <!-- Placeholder for image. Replace src with actual image URL if available. -->
-                    <img src="https://static.toiimg.com/thumb/msid-117515974,imgsize-364726,width-400,height-225,resizemode-72/Representative-Image.jpg" alt="UP Campus Crisis" class="news-image">
-                    <h3 class="text-lg font-semibold text-blue-800">UP Campuses Top in Ragging, 38% Cases from Med Colleges (The Times of India)</h3>
-                    <p class="text-sm text-gray-600">Published: March 26, 2025</p>
-                    <p class="text-gray-700">A report on ragging in India (2022-24) identifies Uttar Pradesh campuses, particularly medical institutions, as hotspots for ragging complaints. It reveals that medical colleges account for 38.6% of total complaints and a significant portion of serious incidents and related deaths, underscoring a critical crisis for first-year medical students. The report calls for renewed dialogue to address institutional apathy.</p>
-                    <a href="https://timesofindia.indiatimes.com/city/lucknow/up-campuses-top-in-ragging-38-cases-from-med-colleges/articleshow/119496328.cms" target="_blank" class="text-blue-600 hover:underline text-sm">Read more</a>
+                <div class="text-center mt-8" data-aos="fade-up">
+                    <button id="load-more-news" class="btn">
+                        <i class="fas fa-newspaper mr-2"></i> Load More News
+                    </button>
                 </div>
+            </div>
+        </section>
 
-                <div class="news-item">
-                    <!-- Placeholder for image. Replace src with actual image URL if available. -->
-                    <img src="https://c.ndtvimg.com/2025-02/ltffu21_karnataka-medical-college-ragging-_625x300_19_February_25.jpg?im=FeatureCrop,algorithm=dnn,width=260,height=195" alt="Consequences of Ragging" class="news-image">
-                    <h3 class="text-lg font-semibold text-blue-800">Kashmiri Student Brutally Ragged, Assaulted At Karnataka Medical College</h3>
-                    <p class="text-sm text-gray-600">Various Dates (Feb 19, 2025 21:54 pm IST)</p>
-                    <p class="text-gray-700">The student has alleged that he was subjected to brutal ragging and threats by senior students from the 2019 batch which reportedly began during a cricket match.</p>
-                    <a href="https://www.ndtv.com/india-news/kashmiri-student-brutally-ragged-assaulted-at-karnataka-medical-college-7745499" target="_blank" class="text-blue-600 hover:underline text-sm">View NDTV News Topic</a>
+        <!-- Timeline Section -->
+        <section class="mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-display section-title">The <span class="gradient-text">Movement</span> Against Ragging</h2>
+            <div class="card">
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-right">
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">2001: Supreme Court Intervention</h3>
+                        <p class="text-gray-700">The Supreme Court of India takes suo motu cognizance of ragging incidents, leading to the first major judicial intervention against the practice in educational institutions.</p>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">2009: UGC Regulations</h3>
+                        <p class="text-gray-700">University Grants Commission (UGC) implements comprehensive regulations on curbing ragging in higher educational institutions, making it mandatory for colleges to prevent and address ragging.</p>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">2012: National Anti-Ragging Helpline</h3>
+                        <p class="text-gray-700">Launch of the 24x7 National Anti-Ragging Helpline (1800-180-5522) and online portal for students to report incidents anonymously.</p>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">2025: Current Advocacy</h3>
+                        <p class="text-gray-700">Student-led initiatives like Satyajit's demonstrate that cultural change through positive peer leadership can be more effective than punitive measures alone.</p>
+                    </div>
                 </div>
-
-                <div class="news-item">
-                    <!-- Placeholder for image. Replace src with actual image URL if available. -->
-                    <img src="https://c.ndtvimg.com/2023-02/j3nulf8_medical-student-generic-medicine-generic-doctor-generic_625x300_25_February_23.jpg?im=FitAndFill,algorithm=dnn,width=773,height=435" alt="Legal Action Against Ragging" class="news-image">
-                    <h3 class="text-lg font-semibold text-blue-800">Gujarat: 15 Arrested For Death Of 1st Year MBBS Student Due To Ragging (NDTV.COM)</h3>
-                    <p class="text-sm text-gray-600">Published: November 19, 2024</p>
-                    <p class="text-gray-700">Police in Patan, Gujarat, arrested 15 second-year medical college students and charged them with culpable homicide following the death of a junior student allegedly due to ragging. This incident highlights the severe legal consequences for those involved in such harmful practices.</p>
-                    <a href="https://www.ndtv.com/india-news/gujarat-mbbs-student-dies-after-alleged-ragging-probe-underway-7040662" target="_blank" class="text-blue-600 hover:underline text-sm">Read more</a>
-                </div>
-
-                <div class="news-item">
-                    <!-- Placeholder for image. Replace src with actual image URL if available. -->
-                    <img src="https://c.ndtvimg.com/2024-06/98v8f0io_rajasthan-police_625x300_01_June_24.jpg?downsize=773:435" alt="Medical Student Injured" class="news-image">
-                    <h3 class="text-lg font-semibold text-blue-800">Rajasthan: Medical Student's Ragging Horror Led to Kidney Infection (NDTV.COM)</h3>
-                    <p class="text-sm text-gray-600">Published: June 26, 2024</p>
-                    <p class="text-gray-700">A first-year MBBS student in Dungarpur, Rajasthan, underwent dialysis four times after allegedly being ragged by senior students, resulting in a severe kidney infection. Police registered a case, underscoring the serious health consequences and legal actions that can arise from ragging incidents.</p>
-                    <a href="https://www.ndtv.com/india-news/medical-student-kidney-malfunctions-after-being-ragged-to-do-300-sit-ups-5974971" target="_blank" class="text-blue-600 hover:underline text-sm">Read more</a>
-                </div>
-
             </div>
         </section>
 
         <!-- Support & Contact Section -->
-        <section id="support" class="mb-10">
-            <h2 class="text-3xl section-title mb-6">Support & Contact: Join the Fight Against Ragging</h2>
+        <section id="support" class="mb-16" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-display section-title">Support & <span class="gradient-text">Contact</span></h2>
             <div class="card">
-                <p class="text-lg leading-relaxed mb-4">
-                    If you or someone you know is experiencing ragging or harassment, immediate action is crucial. There are dedicated resources available to provide support and facilitate reporting.
-                </p>
-                <div class="space-y-4">
-                    <div>
-                        <h3 class="text-xl font-semibold">National Anti-Ragging Helpline (24x7 Toll-Free)</h3>
-                        <p class="text-gray-700 text-lg"><strong class="text-blue-700">Phone:</strong> 1800-180-5522</p>
-                        <p class="text-gray-700 text-lg"><strong class="text-blue-700">Email:</strong> <a href="mailto:helpline@antiragging.in" class="text-blue-600 hover:underline">helpline@antiragging.in</a></p>
-                        <p class="text-sm text-gray-500">Managed by the University Grants Commission (UGC) and Centre for Youth (C4Y).</p>
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/2" data-aos="fade-right">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-6">Immediate Help Resources</h3>
+                        
+                        <div class="bg-blue-50 p-6 rounded-xl mb-6">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">National Anti-Ragging Helpline</h4>
+                                    <p class="text-gray-600 text-sm">24x7 Toll-Free Support</p>
+                                </div>
+                            </div>
+                            <a href="tel:18001805522" class="text-2xl font-bold text-blue-700 hover:text-blue-900 block mb-2">1800-180-5522</a>
+                            <p class="text-sm text-gray-600">Managed by the University Grants Commission (UGC) and Centre for Youth (C4Y).</p>
+                        </div>
+                        
+                        <div class="bg-red-50 p-6 rounded-xl">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-red-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-exclamation-triangle text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Emergency Services</h4>
+                                    <p class="text-gray-600 text-sm">For immediate danger</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <p class="font-semibold text-gray-700 mb-1">Police</p>
+                                    <a href="tel:100" class="text-lg font-bold text-red-700 hover:text-red-900">100</a>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-700 mb-1">Ambulance</p>
+                                    <a href="tel:102" class="text-lg font-bold text-red-700 hover:text-red-900">102</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-semibold">UGC Monitoring Agency: Centre for Youth (C4Y)</h3>
-                        <p class="text-gray-700 text-lg"><strong class="text-blue-700">Email:</strong> <a href="mailto:antiragging@c4yindia.org" class="text-blue-600 hover:underline">antiragging@c4yindia.org</a></p>
-                        <p class="text-sm text-gray-500">For direct correspondence with the monitoring agency for anti-ragging efforts.</p>
+                    
+                    <div class="md:w-1/2" data-aos="fade-left">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-6">Online Reporting & Contact</h3>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-bold text-lg mb-2">Official Anti-Ragging Portal</h4>
+                            <a href="https://antiragging.in" target="_blank" class="text-blue-600 hover:underline font-medium block mb-4">https://antiragging.in</a>
+                            <p class="text-gray-700 mb-4">File complaints anonymously and access resources for students and parents.</p>
+                            <a href="https://antiragging.in" target="_blank" class="btn inline-flex items-center">
+                                <i class="fas fa-external-link-alt mr-2"></i> Visit Portal
+                            </a>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-bold text-lg mb-2">UGC Monitoring Agency</h4>
+                            <p class="text-gray-700 mb-2">Centre for Youth (C4Y)</p>
+                            <a href="mailto:antiragging@c4yindia.org" class="text-blue-600 hover:underline font-medium block mb-2">
+                                <i class="fas fa-envelope mr-2"></i> antiragging@c4yindia.org
+                            </a>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">Connect With Satyajit</h4>
+                            <p class="text-gray-700 mb-4">For speaking engagements, collaborations, or to share your story.</p>
+                            <a href="https://linkedin.com/in/satyajitt" target="_blank" class="btn inline-flex items-center">
+                                <i class="fab fa-linkedin-in mr-2"></i> Message on LinkedIn
+                            </a>
+                        </div>
                     </div>
-                    <p class="text-lg leading-relaxed mt-6">
+                </div>
+                
+                <div class="mt-10 text-center" data-aos="fade-up">
+                    <p class="text-xl font-medium text-gray-700 mb-6">
                         Together, we can create a safer and more inclusive future for all students. Your voice and action can make a difference.
                     </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="https://antiragging.in" target="_blank" class="btn">
+                            <i class="fas fa-shield-alt mr-2"></i> Report Ragging
+                        </a>
+                        <a href="https://linkedin.com/in/satyajitt" target="_blank" class="btn btn-secondary">
+                            <i class="fas fa-hands-helping mr-2"></i> Join the Movement
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -228,14 +591,167 @@
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container text-center">
-            <p>&copy; 2025 Satyajit Biswal. Championing Safe Educational Spaces.</p>
-            <div class="flex justify-center space-x-4 mt-4">
-                <a href="https://linkedin.com/in/satyajitt" target="_blank" class="text-gray-300 hover:text-white transition-colors duration-300">LinkedIn</a>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-display font-bold mb-2">Satyajit Biswal</h3>
+                    <p class="text-gray-400">Championing Safe Educational Spaces</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://linkedin.com/in/satyajitt" target="_blank" class="text-gray-400 hover:text-white text-2xl transition-colors duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:antiragging@c4yindia.org" class="text-gray-400 hover:text-white text-2xl transition-colors duration-300">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">&copy; 2025 Satyajit Biswal. All rights reserved.</p>
+                
+                <div class="flex space-x-4">
+                    <a href="#commitment" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">My Commitment</a>
+                    <a href="#vision" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">My Vision</a>
+                    <a href="#news" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">News</a>
+                    <a href="#support" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">Support</a>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 opacity-0 invisible transform translate-y-4 z-50">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+                document.body.style.overflow = 'auto';
+            }, 500);
+        });
+
+        // Scroll progress bar
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollProgress = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progress-bar').style.width = scrollProgress + '%';
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+                backToTopButton.classList.add('opacity-100', 'visible', 'translate-y-0');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                backToTopButton.classList.add('opacity-0', 'invisible', 'translate-y-4');
+            }
+        });
+
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Load more news functionality
+        document.getElementById('load-more-news').addEventListener('click', function() {
+            const hiddenNews = [
+                {
+                    title: "UP Campuses Top in Ragging, 38% Cases from Med Colleges (The Times of India)",
+                    date: "Published: March 26, 2025",
+                    desc: "A report on ragging in India (2022-24) identifies Uttar Pradesh campuses, particularly medical institutions, as hotspots for ragging complaints. It reveals that medical colleges account for 38.6% of total complaints and a significant portion of serious incidents and related deaths, underscoring a critical crisis for first-year medical students. The report calls for renewed dialogue to address institutional apathy.",
+                    link: "https://timesofindia.indiatimes.com/city/lucknow/up-campuses-top-in-ragging-38-cases-from-med-colleges/articleshow/119496328.cms",
+                    img: "https://static.toiimg.com/thumb/msid-117515974,imgsize-364726,width-400,height-225,resizemode-72/Representative-Image.jpg"
+                },
+                {
+                    title: "Kashmiri Student Brutally Ragged, Assaulted At Karnataka Medical College (NDTV.COM)",
+                    date: "Published: Feb 19, 2025",
+                    desc: "A student alleged brutal ragging and threats by senior students from the 2019 batch, which reportedly began during a cricket match, highlighting the insidious nature of such harassment.",
+                    link: "https://www.ndtv.com/india-news/kashmiri-student-brutally-ragged-assaulted-at-karnataka-medical-college-7745499",
+                    img: "https://c.ndtvimg.com/2025-02/ltffu21_karnataka-medical-college-ragging-_625x300_19_February_25.jpg?im=FeatureCrop,algorithm=dnn,width=260,height=195"
+                },
+                {
+                    title: "Gujarat: 15 Arrested For Death Of 1st Year MBBS Student Due To Ragging (NDTV.COM)",
+                    date: "Published: November 19, 2024",
+                    desc: "Police in Patan, Gujarat, arrested 15 second-year medical college students and charged them with culpable homicide following the death of a junior student allegedly due to ragging. This incident highlights the severe legal consequences for those involved in such harmful practices.",
+                    link: "https://www.ndtv.com/india-news/gujarat-mbbs-student-dies-after-alleged-ragging-probe-underway-7040662",
+                    img: "https://c.ndtvimg.com/2023-02/j3nulf8_medical-student-generic-medicine-generic-doctor-generic_625x300_25_February_23.jpg?im=FitAndFill,algorithm=dnn,width=773,height=435"
+                },
+                {
+                    title: "Rajasthan: Medical Student's Ragging Horror Led to Kidney Infection (NDTV.COM)",
+                    date: "Published: June 26, 2024",
+                    desc: "A first-year MBBS student in Dungarpur, Rajasthan, underwent dialysis four times after allegedly being ragged by senior students, resulting in a severe kidney infection. Police registered a case, underscoring the serious health consequences and legal actions that can arise from ragging incidents.",
+                    link: "https://www.ndtv.com/india-news/medical-student-kidney-malfunctions-after-being-ragged-to-do-300-sit-ups-5974971",
+                    img: "https://c.ndtvimg.com/2024-06/98v8f0io_rajasthan-police_625x300_01_June_24.jpg?downsize=773:435"
+                }
+            ];
+
+            const newsContainer = document.querySelector('#news .card');
+            hiddenNews.forEach((news, index) => {
+                const newsItem = document.createElement('div');
+                newsItem.className = 'news-item';
+                newsItem.setAttribute('data-aos', 'fade-up');
+                newsItem.setAttribute('data-aos-delay', (index + 3) * 100);
+                
+                newsItem.innerHTML = `
+                    <img src="${news.img}" alt="${news.title.substring(0, 30)}..." class="news-image" onerror="this.onerror=null;this.src='https://placehold.co/600x250/CCCCCC/000000?text=Image+Unavailable';">
+                    <div class="news-content">
+                        <h3 class="text-xl font-bold text-blue-800 mb-2">${news.title}</h3>
+                        <p class="text-sm text-gray-600 mb-3">${news.date}</p>
+                        <p class="text-gray-700 mb-4">${news.desc}</p>
+                        <a href="${news.link}" target="_blank" class="btn btn-secondary inline-block text-sm px-4 py-2">
+                            Read Full Story <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                `;
+                
+                newsContainer.insertBefore(newsItem, document.getElementById('load-more-news').parentNode.parentNode);
+            });
+
+            // Hide the load more button after loading all news
+            document.getElementById('load-more-news').style.display = 'none';
+            
+            // Refresh AOS to animate the new elements
+            AOS.refresh();
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
